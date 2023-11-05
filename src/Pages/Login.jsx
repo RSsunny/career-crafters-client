@@ -1,8 +1,14 @@
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook, BsGithub } from "react-icons/bs";
+
 import { Link, useNavigate } from "react-router-dom";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
 const Login = () => {
+  const [eye, setEye] = useState(false);
   const { userlogin, midealogin, user } = useAuth();
   const navigate = useNavigate();
   const handleLogin = (e) => {
@@ -12,73 +18,113 @@ const Login = () => {
     const password = from.password.value;
     const user = { email, password };
     console.log(user);
+    const toastloding = toast.loading("Loding...");
     userlogin(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("success", { id: toastloding });
         navigate("/");
       })
       .catch((err) => {
+        toast.error(err.message, { id: toastloding });
         console.log(err);
       });
   };
 
   const mideaLogin = (midea) => {
+    const toastloding = toast.loading("Loding...");
     midea()
       .then((result) => {
         console.log(result.user);
+        toast.success("success", { id: toastloding });
         navigate("/");
       })
       .catch((err) => {
+        toast.error(err.message, { id: toastloding });
         console.log(err);
       });
   };
   return (
-    <div className="bg-gray-300">
-      <div
-        className="h-screen flex justify-end items-center relative overflow-hidden bg-cover bg-center object-cover"
-        style={{
-          backgroundImage: `url("https://i.ibb.co/3SZ8fRx/user-login-form-on-mobile-phone-screen-banner-vector-30728532.jpg")`,
-        }}
-      >
-        <div className="w-[500px] lg:w-[800px] bg-white lg:mr-36 h-screen md:h-fit">
-          <form onSubmit={handleLogin} className="p-5">
-            <h1 className="text-3xl font-playfair font-bold text-center my-10">
+    <div className="md:h-screen  bg-gray-200 md:p-10 text-black">
+      <div className="flex flex-col-reverse md:flex-row max-w-7xl mx-auto  w-full h-full  items-center  relative overflow-hidden bg-cover bg-center object-cover">
+        <div className="flex-1 h-full md:w-1/2  ">
+          <img
+            className="h-full w-full md:rounded-l-xl"
+            src="https://i.ibb.co/C6w5Smf/career-3386334-1280.jpg"
+            alt=""
+          />
+        </div>
+        <div className=" bg-white flex-1 h-full  rounded-r-xl relative flex flex-col justify-between w-full md:w-1/2">
+          <div className="flex justify-between items-center lg:px-5 mt-2">
+            <Link to={"/"}>
+              <h1 className="text-md md:text-lg lg:text-3xl ml-2 md:m-2  font-bold font-playfair">
+                Career <span className="text-green-500">Crafters</span>
+              </h1>
+            </Link>
+            <p className="text-xs mr-5">
+              Don't have an account ?{" "}
+              <Link to={"/register"} className="text-red-500">
+                SignUp
+              </Link>
+            </p>
+          </div>
+          <form onSubmit={handleLogin} className="p-5 lg:px-32">
+            <h1 className="text-3xl font-playfair font-bold text-center mt-10">
               Login
             </h1>
+            <p className="text-center my-5">
+              {" "}
+              Explore job opportunities that match your skills and interests.
+            </p>
             <h1>Email </h1>
             <input
-              className="w-full p-5 border border-black outline-none my-3"
+              className="w-full p-3 border border-black outline-none my-3 bg-white"
               type="email"
               name="email"
             />
             <h1>Password </h1>
-            <input
-              className="w-full p-5 border border-black outline-none my-3"
-              type="password"
-              name="password"
-            />
+            <div className="relative">
+              <input
+                className="w-full p-3 border border-black outline-none my-3 bg-white"
+                type={eye ? "text" : "password"}
+                name="password"
+              />
+              <div
+                onClick={() => setEye(!eye)}
+                className="absolute right-5 top-6 text-3xl cursor-pointer"
+              >
+                {eye ? <FaRegEye></FaRegEye> : <FaEyeSlash></FaEyeSlash>}
+              </div>
+            </div>
             <div className="flex justify-between items-center">
+              <div className="flex gap-4 items-center">
+                <input type="checkbox" name="" id="" />
+                <p className="text-xs">Remember me</p>
+              </div>
               <p className="text-xs text-red-500">forget password ?</p>
-              <p className="text-xs">
-                Your are new loking ?{" "}
-                <Link to={"/register"} className="text-red-500">
-                  Register
-                </Link>
-              </p>
             </div>
             <input
-              className="w-full p-5 border my-3 hover:bg-green-500 hover:text-white duration-200 ease-linear text-3xl font-bold font-edu"
+              className="w-full p-2 border my-3 bg-green-500 hover:text-white duration-200 ease-linear text-3xl font-bold font-edu"
               type="submit"
               value="Login"
             />
 
-            <div className="flex justify-center items-center gap-5 my-5 text-4xl">
-              <FcGoogle
+            <div className="flex flex-col   lg:flex-row justify-center items-center gap-5 my-5 mt-10 lg:mt-20">
+              <div
                 onClick={() => mideaLogin(midealogin)}
-                className="cursor-pointer"
-              ></FcGoogle>
-              <BsFacebook></BsFacebook>
-              <BsGithub></BsGithub>
+                className="flex items-center gap-5 border px-8 py-2 text-xl font-bold rounded-md hover:bg-indigo-500 hover:text-white duration-500 cursor-pointer w-full text-center justify-center "
+              >
+                <FcGoogle className=" text-3xl"></FcGoogle>
+                <h1>Google</h1>
+              </div>
+              <div className="flex items-center gap-5 border px-8 py-2 text-xl font-bold rounded-md hover:bg-green-600 hover:text-white duration-500 cursor-pointer w-full text-center justify-center">
+                <BsFacebook className=" text-3xl"></BsFacebook>
+                <h1>Facebook</h1>
+              </div>
+              <div className="flex items-center gap-5 border px-8 py-2 text-xl font-bold rounded-md hover:bg-black hover:text-white duration-500 cursor-pointer w-full text-center justify-center">
+                <BsGithub className=" text-3xl"></BsGithub>
+                <h1>Github</h1>
+              </div>
             </div>
           </form>
         </div>
