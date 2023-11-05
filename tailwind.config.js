@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const withMT = require("@material-tailwind/html/utils/withMT");
+ 
+module.exports = withMT({
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -13,5 +15,20 @@ export default {
     },
   },
   plugins: [require("daisyui")],
-}
+});
+// export default {
+//   content: [
+//     "./index.html",
+//     "./src/**/*.{js,ts,jsx,tsx}",
+//   ],
+//   theme: {
+//     extend: {
+//       fontFamily:{
+//         playfair:['Playfair Display', 'serif'],
+//         edu:['Edu TAS Beginner', 'cursive']
+//       }
+//     },
+//   },
+//   plugins: [require("daisyui")],
+// }
 
