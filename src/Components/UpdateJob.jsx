@@ -1,18 +1,24 @@
-import { useState } from "react";
 import useAuth from "../Hooks/useAuth";
 
 import useAxios from "../Hooks/useAxios";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
-const AddJob = () => {
+const UpdateJob = () => {
   const { user } = useAuth();
   const axios = useAxios();
-  const [category, setCategory] = useState();
+
   const navigate = useNavigate();
-  const handleCategory = (e) => {
-    setCategory(e.target.value);
-  };
+
+  const id = useParams();
+  console.log(id);
+
+  const { data, refetch } = useQuery({
+    queryKey: ["rtsdf"],
+    queryFn: () => axios(`/api/v1/jobs/${id.id}`).then((res) => res.data),
+  });
+  console.log(data);
 
   const handleJob = (e) => {
     e.preventDefault();
@@ -23,32 +29,39 @@ const AddJob = () => {
     const maxprice = form.maxprice.value;
     const description = form.description.value;
     const dateandtime = form.dateandtime.value;
-    const categoris = category;
-    const jobinfo = {
-      email,
-      jobtitle,
-      miniprice,
-      maxprice,
-      description,
-      dateandtime,
-      categoris,
-    };
-    const toastloding = toast.loading("Loding...");
+    const categoris = form.categoris.value;
+
+    const jobinfo =
+      {
+        email,
+        jobtitle,
+        miniprice,
+        maxprice,
+        description,
+        dateandtime,
+        categoris,
+      } || {};
     axios
-      .post("/api/v1/jobs", jobinfo)
-      .then((data) => {
-        console.log(data.data);
-        toast.success("success", { id: toastloding });
+      .patch(`/api/v1/jobs/${data._id}`, jobinfo)
+      .then(() => {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Job has been Update",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/myposted");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        // console.log(err);
       });
   };
   return (
-    <div className="max-w-7xl mx-auto px-0 md:px-5 lg:px-0 mb-40">
+    <div className="max-w-7xl mx-auto px-0 md:px-5 lg:px-0">
       <h1 className="text-4xl font-playfair font-bold text-center mt-20 capitalize ">
-        Add your job here...!
+        Update job here...!
       </h1>
       <form
         onSubmit={handleJob}
@@ -64,19 +77,14 @@ const AddJob = () => {
               defaultValue={user?.email}
             />
           </div>
-          <div className="flex-1 w-full border border-black">
-            <select
-              onChange={handleCategory}
-              className="select w-full outline-none "
-            >
-              <option disabled selected>
-                Pick your category job
-              </option>
-              <option value={"web development"}>web development</option>
-              <option value={"digital marketing"}>digital marketing</option>
-              <option value={"graphics design"}> graphics design</option>
-              <option value={"Video & Animation"}> Video & Animation</option>
-            </select>
+          <div className="flex-1 w-full  ">
+            <input
+              className="w-full p-3 outline-none border border-black bg-transparent"
+              type="text"
+              name="categoris"
+              defaultValue={data?.categoris}
+              readOnly
+            />
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 px-5 py-4">
@@ -84,15 +92,15 @@ const AddJob = () => {
             className="w-full p-3 outline-none border border-black bg-transparent"
             type="text"
             name="jobtitle"
+            defaultValue={data?.jobtitle}
             placeholder="Job title"
-            required
           />
           <input
             className="w-full p-3 outline-none border border-black bg-transparent"
             type="datetime-local"
             name="dateandtime"
+            defaultValue={data?.dateandtime}
             placeholder="Deadline"
-            required
           />
         </div>
         <div className="flex flex-col md:flex-row  items-center justify-between gap-10 px-5 py-4">
@@ -102,21 +110,21 @@ const AddJob = () => {
             name="miniprice"
             placeholder="Minimum price
             "
-            required
+            defaultValue={data?.miniprice}
           />
           <input
             className="w-full p-3 outline-none border border-black bg-transparent"
             type="number"
             name="maxprice"
             placeholder="Maximum price"
-            required
+            defaultValue={data?.maxprice}
           />
         </div>
         <div className="px-5 ">
           <textarea
             name="description"
             placeholder="Description"
-            required
+            defaultValue={data?.description}
             className="textarea textarea-border border-black textarea-sm w-full "
           ></textarea>
         </div>
@@ -135,4 +143,4 @@ const AddJob = () => {
   );
 };
 
-export default AddJob;
+export default UpdateJob;

@@ -8,7 +8,6 @@ const MyBids = () => {
 
   const { user } = useAuth();
 
-  console.log(user?.email);
   const [statusname, setsStatusname] = useState("");
   const { isLoading, isError, data, error, refetch, isFetching } = useQuery({
     queryKey: ["bidsjob", user],
@@ -31,7 +30,7 @@ const MyBids = () => {
       });
   };
   return (
-    <div className="max-w-7xl mx-auto px-2 md:px-5 lg:px-0">
+    <div className="max-w-7xl mx-auto px-2 md:px-5 lg:px-0 mb-80">
       <h1 className="text-3xl text-center font-playfair font-bold my-10">
         My Bids
       </h1>
@@ -53,7 +52,7 @@ const MyBids = () => {
               <tr key={data._id}>
                 <th>{indx + 1}</th>
                 <td>{data?.jobtitle}</td>
-                <td>{data?.youremail}</td>
+                <td>{data?.owneremail}</td>
                 <td>{data?.dateandtime}</td>
                 <td>
                   {" "}

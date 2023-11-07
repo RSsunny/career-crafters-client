@@ -12,7 +12,7 @@ const CategorisCard = ({ data }) => {
     categoris,
   } = data;
   return (
-    <div className="border-2 shadow-md  border-green-500  w-[300px] md:w-full mx-auto">
+    <div className="border-2 shadow-md  border-green-500    mx-auto ">
       <div className="flex justify-center items-center h-44 border-b border-black bg-gray-200 ">
         {" "}
         <h1 className="text-2xl font-playfair font-bold ">{jobtitle}</h1>

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const JobDetails = () => {
   const { user } = useAuth();
@@ -33,6 +34,7 @@ const JobDetails = () => {
     const price = form.price.value;
     const youremail = user?.email;
     const owneremail = email;
+
     const bidinfo = {
       price,
       youremail,
@@ -46,15 +48,23 @@ const JobDetails = () => {
     axios
       .post("/api/v1/bids", bidinfo)
       .then((res) => {
-        console.log(res.data);
-        navigate("/mybids");
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Bid Complete",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/mybids");
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div className="max-w-7xl mx-auto px-2 md:px-5 lg:px-0">
+    <div className="max-w-7xl mx-auto px-2 md:px-5 lg:px-0 mb-20 md:mb-64">
       <h1 className=" font-playfair font-bold mt-10 text-2xl">{categoris}</h1>
       <div>
         <h1 className="text-xl font-playfair font-bold my-3">{jobtitle}</h1>
@@ -63,10 +73,13 @@ const JobDetails = () => {
         </h3>
         <h2>{description}</h2>
       </div>
-      <h1 className="text-center font-playfair font-bold my-10 text-3xl">
+      <h1 className="text-center font-playfair font-bold my-10 md:text-3xl">
         place your bid form
       </h1>
-      <form onSubmit={handleBid} className="w-[800px] mx-auto border p-10">
+      <form
+        onSubmit={handleBid}
+        className="md:w-[800px] mx-auto border p-5 md:p-10"
+      >
         <h1 className="text-xl font-playfair font-bold">Price :</h1>
         <input
           className="w-full p-3 mt-2 mb-5 outline-none border border-black"
@@ -87,7 +100,7 @@ const JobDetails = () => {
           className="w-full p-3 mt-2 mb-5 outline-none border border-black"
           type="email"
           name="dateandtime"
-          defaultValue={email}
+          defaultValue={user?.email}
           readOnly
         />
         <h1 className="text-xl font-playfair font-bold">Owner Email :</h1>
@@ -95,7 +108,7 @@ const JobDetails = () => {
           className="w-full p-3 mt-2 mb-5 outline-none border border-black"
           type="owneremail"
           name="dateandtime"
-          defaultValue={user?.email}
+          defaultValue={email}
           readOnly
         />
         <input

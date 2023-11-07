@@ -33,7 +33,7 @@ const BidRequest = () => {
       });
   };
   return (
-    <div className="max-w-7xl mx-auto px-2 md:px-5 lg:px-0">
+    <div className="max-w-7xl mx-auto px-2 md:px-5 lg:px-0 mb-80">
       <h1 className="text-3xl text-center font-playfair font-bold my-10">
         Bid Request
       </h1>
@@ -104,7 +104,7 @@ const BidRequest = () => {
                   ) : (
                     <button
                       onClick={() =>
-                        handleselect({ id: data._id, status: "Accept" })
+                        handleselect({ id: data?._id, status: "Accept" })
                       }
                       className="px-4 py-1  border rounded-3xl  "
                     >
@@ -117,7 +117,7 @@ const BidRequest = () => {
                   {!data.status && (
                     <button
                       onClick={() =>
-                        handleselect({ id: data._id, status: "Reject" })
+                        handleselect({ id: data?._id, status: "Reject" })
                       }
                       className="px-4 py-1  border rounded-3xl  "
                     >

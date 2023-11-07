@@ -16,7 +16,7 @@ const Category = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto mb-20">
+    <div className="max-w-7xl mx-auto mb-20 ">
       <h1 className="text-4xl font-playfair text-center my-10">
         Find Your Job
       </h1>
@@ -45,7 +45,7 @@ const Category = () => {
           <Tab
             onClick={() => setCategoriname("graphics design")}
             className={
-              " inline-block px-2 md:px-4py-2  rounded-none border-r  border-black"
+              " inline-block px-2 md:px-4 py-2  rounded-none border-r border-black"
             }
           >
             graphics design
@@ -61,7 +61,7 @@ const Category = () => {
         </TabList>
 
         <TabPanel className={""}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-around gap-10 border mt-20 border-none px-2 md:px-5 lg:px-0 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-around gap-10 border mt-20 border-none px-4 md:px-5 lg:px-0 ">
             {card?.map((data) => (
               <CategorisCard key={data._id} data={data}></CategorisCard>
             ))}
@@ -82,7 +82,7 @@ const Category = () => {
           </div>
         </TabPanel>
         <TabPanel className={""}>
-          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 justify-around gap-10 mt-20 border-none px-2 md:px-5 lg:px-0  lg:mx-0">
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 justify-around gap-10 mt-20 border-none px-2 md:px-5 lg:px-0  lg:mx-0 ">
             {card?.map((data) => (
               <CategorisCard key={data._id} data={data}></CategorisCard>
             ))}

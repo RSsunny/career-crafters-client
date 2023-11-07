@@ -1,7 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook, BsGithub } from "react-icons/bs";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
@@ -11,6 +11,8 @@ const Login = () => {
   const [eye, setEye] = useState(false);
   const { userlogin, midealogin } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   const handleLogin = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -23,7 +25,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         toast.success("success", { id: toastloding });
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         toast.error(err.message, { id: toastloding });
@@ -36,7 +38,7 @@ const Login = () => {
     midea()
       .then(() => {
         toast.success("success", { id: toastloding });
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         toast.error(err.message, { id: toastloding });

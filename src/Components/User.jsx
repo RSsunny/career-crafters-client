@@ -46,9 +46,11 @@ const User = () => {
                 />
               </svg>
 
-              <Typography variant="small" className="font-semibold text-lg">
-                My Profile
-              </Typography>
+              <Link to={"/profile"}>
+                <Typography variant="small" className="font-semibold text-lg">
+                  My Profile
+                </Typography>
+              </Link>
             </MenuItem>
             <MenuItem className="flex items-center gap-3  w-full px-5 font-medium hover:border-none outline-none hover:text-white py-1 hover:bg-green-400">
               <svg
