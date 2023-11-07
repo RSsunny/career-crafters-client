@@ -11,7 +11,6 @@ import useAuth from "../Hooks/useAuth";
 
 const User = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
 
   const handleLogout = () => {
     logOut();

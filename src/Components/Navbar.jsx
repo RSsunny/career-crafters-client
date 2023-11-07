@@ -27,11 +27,11 @@ const Navbar = () => {
     };
   }, []);
   const locattion = useLocation();
-  console.log(locattion);
+
   return (
     <div
       className={`border-b md:py-5  w-full ${
-        location?.pathname === "/" && "text-white"
+        locattion?.pathname === "/" && "text-white"
       }   duration-1000 ease-linear   z-50  ${
         issticky ? "sticky bg-gray-200    top-0  " : ""
       }`}

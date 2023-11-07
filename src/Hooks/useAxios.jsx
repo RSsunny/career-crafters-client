@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import useAuth from "./useAuth";
 
 const axiousSecure = axios.create({
-  baseURL: "http://localhost:5173",
+  baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 const useAxios = () => {
-  const { logOut } = useAuth();
+  const { logOut } = useAuth() || "";
+
   useEffect(() => {
     axiousSecure.interceptors.response.use(
       (res) => {

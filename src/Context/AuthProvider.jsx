@@ -9,13 +9,15 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase";
-import axios from "axios";
+
+import useAxios from "../Hooks/useAxios";
 
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loding, setLoding] = useState(true);
+  const axios = useAxios();
 
   const createUser = (email, password) => {
     setLoding(true);
@@ -40,39 +42,20 @@ const AuthProvider = ({ children }) => {
       const userEmail = currentuser?.email || user?.email;
 
       const emailuser = { email: userEmail };
-      console.log(userEmail);
+
       setUser(currentuser);
       setLoding(false);
 
       if (currentuser) {
         try {
-          axios
-            .post(
-              "https://career-crafters-server-site.vercel.app/jwt",
-              emailuser,
-              {
-                withCredentials: true,
-              }
-            )
-            .then((data) => {
-              console.log(data.data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          axios.post("/jwt", emailuser).then().catch();
         } catch (err) {
           console.log(err);
         }
       } else {
         try {
           axios
-            .post(
-              "https://career-crafters-server-site.vercel.app/userlogout",
-              emailuser,
-              {
-                withCredentials: true,
-              }
-            )
+            .post("/userlogout", emailuser)
             .then((res) => {
               console.log(res.data);
             })
@@ -87,7 +70,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe;
     };
-  }, [user]);
+  }, [user, axios]);
   const authInfo = {
     user,
     loding,

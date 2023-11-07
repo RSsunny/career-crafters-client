@@ -1,13 +1,16 @@
 import { useState } from "react";
 import useAuth from "../Hooks/useAuth";
 
+import useAxios from "../Hooks/useAxios";
+
 const AddJob = () => {
   const { user } = useAuth();
+  const axios = useAxios();
   const [category, setCategory] = useState();
   const handleCategory = (e) => {
     setCategory(e.target.value);
   };
-  console.log(category);
+
   const handleJob = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,16 +30,28 @@ const AddJob = () => {
       dateandtime,
       categoris,
     };
+    axios
+      .post("/api/v1/jobs", jobinfo)
+      .then((data) => {
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     console.log(jobinfo);
   };
   return (
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-4xl font-playfair font-bold text-center mt-20 capitalize">
+    <div className="max-w-7xl mx-auto px-0 md:px-5 lg:px-0">
+      <h1 className="text-4xl font-playfair font-bold text-center mt-20 capitalize ">
         Add your job here...!
       </h1>
-      <form onSubmit={handleJob} className="border border-black my-10">
-        <div className="flex items-center justify-between gap-10 px-5 py-4">
-          <div className="flex-1">
+      <form
+        onSubmit={handleJob}
+        className="md:border border-black rounded-md  my-10 pt-10"
+      >
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10 px-5 py-4 ">
+          <div className="flex-1 w-full">
             <input
               className="w-full p-3 outline-none border border-black bg-transparent"
               type="email"
@@ -45,7 +60,7 @@ const AddJob = () => {
               defaultValue={user?.email}
             />
           </div>
-          <div className="flex-1 border border-black">
+          <div className="flex-1 w-full border border-black">
             <select
               onChange={handleCategory}
               className="select w-full outline-none "
@@ -55,11 +70,12 @@ const AddJob = () => {
               </option>
               <option value={"web development"}>web development</option>
               <option value={"digital marketing"}>digital marketing</option>
-              <option value={" graphics design"}> graphics design</option>
+              <option value={"graphics design"}> graphics design</option>
+              <option value={"Video & Animation"}> Video & Animation</option>
             </select>
           </div>
         </div>
-        <div className="flex items-center justify-between gap-10 px-5 py-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10 px-5 py-4">
           <input
             className="w-full p-3 outline-none border border-black bg-transparent"
             type="text"
@@ -75,7 +91,7 @@ const AddJob = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-between gap-10 px-5 py-4">
+        <div className="flex flex-col md:flex-row  items-center justify-between gap-10 px-5 py-4">
           <input
             className="w-full p-3 outline-none border border-black bg-transparent"
             type="number"
@@ -100,8 +116,8 @@ const AddJob = () => {
             className="textarea textarea-border border-black textarea-sm w-full "
           ></textarea>
         </div>
-        <div className="flex justify-end p-5 gap-5">
-          <h1 className="border border-black btn px-4 py-2 rounded-md cursor-pointer">
+        <div className="flex justify-center md:justify-end p-5 gap-5">
+          <h1 className="border border-black btn px-4 py-1 rounded-md cursor-pointer">
             reset
           </h1>
           <input

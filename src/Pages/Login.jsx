@@ -6,11 +6,10 @@ import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 const Login = () => {
   const [eye, setEye] = useState(false);
-  const { userlogin, midealogin, user } = useAuth();
+  const { userlogin, midealogin } = useAuth();
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ const Login = () => {
     midea()
       .then(() => {
         toast.success("success", { id: toastloding });
-        // navigate("/");
+        navigate("/");
       })
       .catch((err) => {
         toast.error(err.message, { id: toastloding });
