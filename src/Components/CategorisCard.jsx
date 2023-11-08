@@ -59,10 +59,21 @@ const CategorisCard = ({ data }) => {
           Because it&apos;s about motivating the doers. Because I&apos;m here to
           follow my dreams and inspire others.
         </Typography>
+        <div className="flex justify-between items-center  text-xs mt-4">
+          {" "}
+          <p>{dateandtime}</p>
+          <h1>
+            salary : ${miniprice}-${maxprice}
+          </h1>
+        </div>
       </CardBody>
       <CardFooter className="pt-0">
         <Link to={`/jobdetails/${_id}`} className="inline-block">
-          <Button size="sm" variant="text" className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="text"
+            className="flex items-center gap-2 hover:bg-gray-300 mt-5"
+          >
             Bid now
             <svg
               xmlns="http://www.w3.org/2000/svg"

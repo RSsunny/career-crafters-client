@@ -1,8 +1,7 @@
-# React + Vite
+# Career Crafters
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- The website should have a comprehensive job listing section where employers can post job openings related to career crafts such as woodworking, pottery, jewelry-making, and other artisanal trades. Users should be able to filter through job listings based on location, job type, and experience level.
+- The website will feature a tab-based system for browsing jobs, representing thecategories of web development, digital marketing, and graphics design. Each tabwill display a minimum of four cards.
+- jwt token feture added scequer data for user.
+- login system a added. you can easyly login this page.
+- privet page add. user musbe login then visite another page.
