@@ -107,6 +107,7 @@ const BidRequest = () => {
                         handleselect({ id: data?._id, status: "Accept" })
                       }
                       className="px-4 py-1  border rounded-3xl  "
+                      title="Click twice"
                     >
                       Accept
                     </button>
@@ -120,6 +121,7 @@ const BidRequest = () => {
                         handleselect({ id: data?._id, status: "Reject" })
                       }
                       className="px-4 py-1  border rounded-3xl  "
+                      title="Click twice"
                     >
                       Reject
                     </button>

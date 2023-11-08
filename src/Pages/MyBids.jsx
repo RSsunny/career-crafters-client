@@ -76,15 +76,17 @@ const MyBids = () => {
                         className={`px-4 py-1  border rounded-3xl ${
                           !data.status && "opacity-50 cursor-not-allowed"
                         }  `}
+                        title="Click twice"
                       >
                         Complete
                       </button>
                     )
                   ) : (
                     <button
-                      className={`px-4 py-1  border rounded-3xl ${
+                      className={`px-4 py-1  border rounded-3xl  ${
                         !data.status && "opacity-50 cursor-not-allowed"
                       }  `}
+                      title="Click twice"
                     >
                       Complete
                     </button>

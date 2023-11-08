@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const SectionThree = () => {
   return (
     <div className="max-w-7xl mx-auto px-3 md:px-5 lg:px-0 my-20">
