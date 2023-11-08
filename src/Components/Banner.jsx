@@ -4,9 +4,24 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BsSearch } from "react-icons/bs";
 // import required modules
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Banner = () => {
+  AOS.init({
+    disable: false,
+    startEvent: "DOMContentLoaded",
+    initClassName: "aos-init",
+    animatedClassName: "aos-animate",
+    debounceDelay: 50,
+    throttleDelay: 99,
+    delay: 500,
+    duration: 400,
+    easing: "ease",
+    mirror: false,
+    anchorPlacement: "top-bottom",
+  });
   return (
     <div className="relative">
       <Swiper
@@ -67,11 +82,21 @@ const Banner = () => {
       </Swiper>
       <div className="absolute flex items-center justify-center inset-0 px-5 md:px-0 z-50">
         <div className="text-white flex flex-col space-y-3 md:space-y-5 text-center">
-          <h1 className="text-xl md:text-4xl font-playfair font-bold">
+          <h1
+            className="text-xl md:text-4xl font-playfair font-bold"
+            data-aos="fade-up"
+            data-aos-mirror="true"
+            data-aos-delay="500"
+          >
             Find Your <span className="text-green-500">Dream Job</span> Fits
             Your Life
           </h1>
-          <p className="md:w-[800px] text-xs md:text-base mx-auto">
+          <p
+            className="md:w-[800px] text-xs md:text-base mx-auto"
+            data-aos="fade-up"
+            data-aos-mirror="true"
+            data-aos-delay="800"
+          >
             Explore job opportunities that match your skills and interests.It
             provides a clear indication of an employee's responsibilities,
             expertise, and hierarchy in the company. Examples of job titles
