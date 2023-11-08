@@ -18,25 +18,6 @@ const CategorisCard = ({ data }) => {
     categoris,
   } = data;
   return (
-    // <div className="border-2 shadow-md      mx-auto ">
-    //   <div className="flex justify-center items-center h-44 border-b border-black bg-gray-200 ">
-    //     {" "}
-    //     <h1 className="text-2xl font-playfair font-bold ">{jobtitle}</h1>
-    //   </div>
-    //   <div className="flex justify-between items-center p-2">
-    //     {" "}
-    //     <p>{dateandtime}</p>
-    //     <h1>
-    //       salary : ${miniprice}-${maxprice}
-    //     </h1>
-    //   </div>
-    //   <p className="my-3 text-xs px-2">{description}</p>
-    // <Link to={`/jobdetails/${_id}`}>
-    //   <button className="border w-full py-2 font-bold font-playfair hover:bg-green-500 duration-500 ease-linear">
-    //     Bid now
-    //   </button>
-    // </Link>
-    // </div>
     <Card className="mt-6  p-5">
       <CardBody>
         <svg
@@ -53,12 +34,9 @@ const CategorisCard = ({ data }) => {
           <path d="M5.26 17.242a.75.75 0 10-.897-1.203 5.243 5.243 0 00-2.05 5.022.75.75 0 00.625.627 5.243 5.243 0 005.022-2.051.75.75 0 10-1.202-.897 3.744 3.744 0 01-3.008 1.51c0-1.23.592-2.323 1.51-3.008z" />
         </svg>
         <Typography variant="h5" color="blue-gray" className="mb-2">
-          UI/UX Review Check
+          {jobtitle}
         </Typography>
-        <Typography>
-          Because it&apos;s about motivating the doers. Because I&apos;m here to
-          follow my dreams and inspire others.
-        </Typography>
+        <Typography>{description}</Typography>
         <div className="flex justify-between items-center  text-xs mt-4">
           {" "}
           <p>{dateandtime}</p>
@@ -97,10 +75,3 @@ const CategorisCard = ({ data }) => {
 };
 
 export default CategorisCard;
-{
-  /* <Link to={`/jobdetails/${_id}`}>
-  <button className="border w-full py-2 font-bold font-playfair hover:bg-green-500 duration-500 ease-linear">
-    Bid now
-  </button>
-</Link>; */
-}
