@@ -43,7 +43,12 @@ const JobDetails = () => {
       jobtitle,
     };
     if (youremail == owneremail) {
-      return alert("gdfgdhfdhf");
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Sory This is your post",
+        showConfirmButton: true,
+      });
     }
     axios
       .post("/api/v1/bids", bidinfo)

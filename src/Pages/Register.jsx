@@ -7,6 +7,8 @@ const Register = () => {
   const [eye, setEye] = useState(false);
   const { createUser } = useAuth();
   const navigate = useNavigate();
+  const [success, setSuccess] = useState("");
+  const [error, seterror] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -20,10 +22,12 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        setSuccess("login success");
         toast.success("Success", { id: toastLoding });
         navigate("/");
       })
       .catch((err) => {
+        seterror("password not match");
         toast.error(err.message, { id: toastLoding });
         console.log(err);
       });
@@ -116,6 +120,8 @@ const Register = () => {
                 type="submit"
                 value="Register"
               />
+              {error && <h1 className="text-xs text-red-500">{error}</h1>}
+              {success && <h1 className="text-xs text-green-500">{success}</h1>}
             </form>
           </div>
         </div>

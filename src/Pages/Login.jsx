@@ -12,6 +12,8 @@ const Login = () => {
   const { userlogin, midealogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [success, setSuccess] = useState("");
+  const [error, seterror] = useState("");
   console.log(location);
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,16 +22,21 @@ const Login = () => {
     const password = from.password.value;
     const user = { email, password };
     console.log(user);
+    setSuccess("");
+    seterror("");
     const toastloding = toast.loading("Loding...");
     userlogin(email, password)
       .then((result) => {
         console.log(result.user);
+        setSuccess("login success");
         toast.success("success", { id: toastloding });
+
         navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         toast.error(err.message, { id: toastloding });
         console.log(err);
+        seterror("password not match");
       });
   };
 
@@ -109,6 +116,8 @@ const Login = () => {
               type="submit"
               value="Login"
             />
+            {error && <h1 className="text-xs text-red-500">{error}</h1>}
+            {success && <h1 className="text-xs text-green-500">{success}</h1>}
 
             <div className="flex flex-col   lg:flex-row justify-center items-center gap-5 my-5 mt-10 lg:mt-20">
               <div
