@@ -3,8 +3,10 @@ const SectionOne = () => {
     <div className="flex flex-col lg:flex-row justify-between gap-5 max-w-7xl mx-auto my-20 px-2 md:px-5 lg:px-0 ">
       <div className="flex-1">
         <h1 className="text-4xl font-playfair font-bold mb-5">
-          What can I do with Career Crafters?
+          What can I do with{" "}
+          <span className="text-green-500"> Career Crafters</span>?
         </h1>
+
         <p>
           Streamline your hiring process with strategic channels to reach
           qualified candidates
