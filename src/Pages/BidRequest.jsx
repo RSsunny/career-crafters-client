@@ -21,7 +21,7 @@ const BidRequest = () => {
     setsStatusname(select);
     const { id, status } = statusname;
     const hgfghfg = { status };
-    console.log(id, hgfghfg);
+
     axios
       .patch(`/api/v1/bids/${id}`, hgfghfg)
       .then((res) => {

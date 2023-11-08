@@ -6,7 +6,14 @@ const Private = ({ children }) => {
 
   const { user, loding } = useAuth();
   if (loding) {
-    return <h1>lodding....</h1>;
+    return (
+      <div className="text-center my-10">
+        <span className="loading loading-dots loading-xs"></span>
+        <span className="loading loading-dots loading-sm"></span>
+        <span className="loading loading-dots loading-md"></span>
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
   }
   if (user) {
     return children;
