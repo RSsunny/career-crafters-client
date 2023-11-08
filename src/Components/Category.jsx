@@ -6,9 +6,16 @@ import CategorisCard from "./CategorisCard";
 
 const Category = () => {
   const [categoriname, setCategoriname] = useState("web development");
-  const { isLoading, isError, data, error, refetch, isFetching } = useJobs();
+  const { isLoading, data } = useJobs();
   if (isLoading) {
-    return <h1>loding...</h1>;
+    return (
+      <div className="text-center my-10">
+        <span className="loading loading-dots loading-xs"></span>
+        <span className="loading loading-dots loading-sm"></span>
+        <span className="loading loading-dots loading-md"></span>
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
   }
 
   const card = data?.filter(

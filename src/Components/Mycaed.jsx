@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 const Mycaed = ({ card, refetch }) => {
   const axios = useAxios();
   const { user } = useAuth();
@@ -74,3 +74,8 @@ const Mycaed = ({ card, refetch }) => {
 };
 
 export default Mycaed;
+
+Mycaed.propTypes = {
+  card: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
+};

@@ -6,16 +6,16 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import PropTypes from "prop-types";
 const CategorisCard = ({ data }) => {
   const {
     _id,
-    email,
+
     jobtitle,
     miniprice,
     maxprice,
     description,
     dateandtime,
-    categoris,
   } = data;
   return (
     <Card className="mt-6  p-5">
@@ -75,3 +75,7 @@ const CategorisCard = ({ data }) => {
 };
 
 export default CategorisCard;
+
+CategorisCard.propTypes = {
+  data: PropTypes.object.isRequired,
+};
