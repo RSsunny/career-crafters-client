@@ -50,7 +50,7 @@ const Navbar = () => {
         <Manu></Manu>
         <div className="flex items-center gap-3 md:gap-8 ">
           <Drack></Drack>
-          <Notification></Notification>
+          {/* <Notification></Notification> */}
           <User></User>
           <div className="cursor-pointer hidden md:block">
             <h1 className="border border-green-500 text-green-500 font-playfair  font-bold  px-4 py-2">

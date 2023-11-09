@@ -97,7 +97,7 @@ const UpdateJob = () => {
           />
           <input
             className="w-full p-3 outline-none border border-black bg-transparent"
-            type="datetime-local"
+            type="date"
             name="dateandtime"
             defaultValue={data?.dateandtime}
             placeholder="Deadline"

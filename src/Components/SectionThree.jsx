@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 const SectionThree = () => {
   return (
     <div className="max-w-7xl mx-auto px-3 md:px-5 lg:px-0 my-20">
@@ -8,7 +7,7 @@ const SectionThree = () => {
         </h1>
         <p>Find your favourite jobs and get the benefits of yourself</p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-5  gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-5  gap-2">
         <div className="relative">
           <img
             className="h-full"
@@ -28,12 +27,13 @@ const SectionThree = () => {
             src="https://i.ibb.co/PZ6Psns/luke-stackpoole-ub-SUwrr04-Ks-unsplash.jpg"
             alt=""
           />
-          <div className="absolute bottom-5 left-3 text-white">
+          <div className="absolute bottom-5 left-3 text-white z-10">
             <h1 className=" md:text-2xl font-playfair font-bold mb-2">
               United States
             </h1>
             <p>Open Jobs (8)</p>
           </div>
+          <div className="absolute inset-1 bg-red-500 opacity-0 hover:opacity-40 ease-linear  duration-700  bottom-0"></div>
         </div>
         <div className="relative">
           <img
@@ -41,12 +41,13 @@ const SectionThree = () => {
             src="https://i.ibb.co/zs04yVP/pexels-pixabay-460672.jpg"
             alt=""
           />
-          <div className="absolute bottom-5 left-3 text-white">
+          <div className="absolute bottom-5 left-3 text-white z-10">
             <h1 className=" md:text-2xl font-playfair font-bold mb-2">
               United Kingdom
             </h1>
             <p>Open Jobs (5)</p>
           </div>
+          <div className="absolute inset-1 bg-red-500 opacity-0 hover:opacity-40 ease-linear  duration-700   bottom-0"></div>
         </div>
         <div className="relative">
           <img

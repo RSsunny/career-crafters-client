@@ -19,7 +19,7 @@ const User = () => {
     <div>
       {user ? (
         <Menu>
-          <MenuHandler className="rounded-full cursor-pointer w-6 md:w-10">
+          <MenuHandler className="rounded-full cursor-pointer w-7 h-7 md:h-full  md:w-10">
             <Avatar
               variant="circular"
               alt="tania andrew"

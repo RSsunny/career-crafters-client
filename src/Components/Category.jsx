@@ -17,7 +17,6 @@ const Category = () => {
       </div>
     );
   }
-
   const card = data?.filter(
     (categoryjob) => categoryjob.categoris == categoriname
   );

@@ -3,7 +3,7 @@ import Category from "../Components/Category";
 import SectionOne from "../Components/SectionOne";
 import SectionThree from "../Components/SectionThree";
 import SectionTwo from "../Components/SectionTwo";
-
+import Prictice from "../Components/Prictice";
 const Home = () => {
   return (
     <>
@@ -15,6 +15,7 @@ const Home = () => {
       <SectionTwo></SectionTwo>
       <SectionOne></SectionOne>
       <SectionThree></SectionThree>
+      <Prictice></Prictice>
     </>
   );
 };

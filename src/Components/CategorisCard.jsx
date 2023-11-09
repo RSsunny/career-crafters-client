@@ -7,7 +7,10 @@ import {
   Button,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+
 const CategorisCard = ({ data }) => {
+  const [expire, setExpire] = useState(false);
   const {
     _id,
 
@@ -17,6 +20,27 @@ const CategorisCard = ({ data }) => {
     description,
     dateandtime,
   } = data;
+  useEffect(() => {
+    let today = new Date();
+
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getDate() + 2).padStart(2, "0");
+
+    let yyyy = today.getFullYear();
+    today = yyyy + mm + dd;
+
+    let pre1date = dateandtime.replace("-", "");
+    let pre2date = pre1date.replace("-", "");
+    console.log(pre2date, today);
+    if (pre2date < today) {
+      setExpire(true);
+      console.log("true");
+    } else {
+      setExpire(false);
+      console.log("false");
+    }
+  }, [dateandtime]);
+
   return (
     <Card className="mt-6  p-5">
       <CardBody>
@@ -24,7 +48,7 @@ const CategorisCard = ({ data }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="mb-4 h-12 w-12 text-gray-900"
+          className="mb-4 h-12 w-12 text-green-500"
         >
           <path
             fillRule="evenodd"
@@ -46,29 +70,57 @@ const CategorisCard = ({ data }) => {
         </div>
       </CardBody>
       <CardFooter className="pt-0">
-        <Link to={`/jobdetails/${_id}`} className="inline-block">
-          <Button
-            size="sm"
-            variant="text"
-            className="flex items-center gap-2 hover:bg-gray-300 mt-5"
-          >
-            Bid now
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-4 w-4"
+        {expire ? (
+          <Link className="inline-block">
+            <Button
+              size="sm"
+              variant="text"
+              className={`flex items-center gap-2 hover:bg-gray-300 mt-5 ${
+                expire && "opacity-50 cursor-not-allowed "
+              }`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-              />
-            </svg>
-          </Button>
-        </Link>
+              Bid now
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </Button>
+          </Link>
+        ) : (
+          <Link to={`/jobdetails/${_id}`} className="inline-block">
+            <Button
+              size="sm"
+              variant="text"
+              className={`flex items-center gap-2 hover:bg-gray-300 mt-5 `}
+            >
+              Bid now
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </Button>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );
