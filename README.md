@@ -5,6 +5,7 @@
 ## Live link : https://gregarious-taffy-5c03fc.netlify.app/
 
 # technology
+- Firebase
 - TanstacQuery
 - Axios
 - react-hook-from
